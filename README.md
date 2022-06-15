@@ -1,4 +1,4 @@
-# ssm-wrapper
+# ec2ssm
 
 # How to use
 
