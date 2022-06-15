@@ -89,5 +89,5 @@ brew switch openssl 1.0.2q
 ```
 
 ## user, passowrd option
-- set env EC2USER, EC2PASSWORD, you can login user automatically
+- set env EC2USER, EC2PASSWORD, you can login its user automatically
 
