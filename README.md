@@ -2,7 +2,7 @@
 
 # How to use
 
-## Install ssm-wrapper
+## Install ec2ssm
 ```
 cd ~
 git clone https://github.com/yuhiwa/ec2ssm.git
