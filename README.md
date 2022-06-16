@@ -9,8 +9,7 @@ git clone https://github.com/yuhiwa/ec2ssm.git
 cd ec2ssm
 ```
 
-
-## awscli
+## Install awscli
 
 ```
 pip3 install --upgrade awscli
@@ -26,7 +25,7 @@ rm /usr/local/bin/aws
 brew install awscli
 ```
 
-## ssm plugin install
+## Install ssm plugin
 
 ```
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/sessionmanager-bundle.zip" -o "sessionmanager-bundle.zip"
@@ -44,21 +43,21 @@ sudo pip3 install boto3 pexpect
 
 ## configure profile
 
-### example
-- .aws/config 
+### Write ~/.aws/credentials 
 ```
+# ~/.aws/credentials 
+
 [default]
-region = ap-northeast-1
-aws_access_key_id=ABCDDDDXXXXX
-aws_secret_access_key=aaaaaaaaaaaaaaaaaaaaa
+aws_access_key_id=....
+aws_secret_access_key=....
 
-[profile prod]
+[example]
 region = ap-northeast-1
-aws_access_key_id=APRODDDDDDDDD
-aws_secret_access_key=pppproorddddddxxxxxxx
+aws_access_key_id=....
+aws_secret_access_key=....
 ```
 
-### zsh setting
+### Edit zsh setting
 - add following to ~/.zshrc.local 
 ```
 function ec2ssm { ~/ec2ssm/ec2ssm.py $1 $2 $3 }
@@ -66,21 +65,24 @@ function _ec2ssm { compadd $(cat ~/.aws_instances*) }
 compdef _ec2ssm ec2ssm
 ```
 
-## login instance (example)
+## Login instance (default profile)
 ```
-ec2ssm example-web01
+ec2ssm test-web01
 ```
-- refer to Name tag
+## Login instance (specific profile)
+```
+ec2ssm example-web01 --profile example
+```
 
 
-## update instance information
+## Update instance information
 ```
 ec2ssm update
-ec2ssm update --profile prod
+ec2ssm update --profile example
 ```
 - In case of nothing profile option, default profile.
 
-## in case of ssl errors
+## In case of ssl errors
 - need update python3
 ```
 brew upgrade python3
@@ -88,6 +90,8 @@ pip3 install --upgrade awscli
 brew switch openssl 1.0.2q
 ```
 
-## user, passowrd option
+## User and passowrd option
 - set env EC2USER, EC2PASSWORD, you can login its user automatically
 
+## To do
+- ec2ssm remove, all instance infomation file remove..
