@@ -2,17 +2,26 @@
 
 # How to use
 
-## Install ec2ssm
+## configure profile
+
+### Write ~/.aws/credentials 
 ```
-cd ~
-git clone https://github.com/yuhiwa/ec2ssm.git
-cd ec2ssm
+# ~/.aws/credentials 
+
+[default]
+aws_access_key_id=....
+aws_secret_access_key=....
+
+[example]
+region = ap-northeast-1
+aws_access_key_id=....
+aws_secret_access_key=....
 ```
 
 ## Install awscli
 
 ```
-pip3 install --upgrade awscli
+sudo pip3 install --upgrade awscli
 ```
 - or
 ```
@@ -41,20 +50,11 @@ https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/session-manag
 sudo pip3 install boto3 pexpect
 ```
 
-## configure profile
-
-### Write ~/.aws/credentials 
+## Install ec2ssm
 ```
-# ~/.aws/credentials 
-
-[default]
-aws_access_key_id=....
-aws_secret_access_key=....
-
-[example]
-region = ap-northeast-1
-aws_access_key_id=....
-aws_secret_access_key=....
+cd ~
+git clone https://github.com/yuhiwa/ec2ssm.git
+cd ec2ssm
 ```
 
 ### Edit zsh setting
@@ -64,6 +64,14 @@ function ec2ssm { ~/ec2ssm/ec2ssm.py $1 $2 $3 }
 function _ec2ssm { compadd $(cat ~/.aws_instances*) }
 compdef _ec2ssm ec2ssm
 ```
+
+## Update instance information
+```
+ec2ssm update
+ec2ssm update --profile example
+```
+- In case of nothing profile option, default profile.
+
 
 ## Login instance (default profile)
 ```
@@ -75,12 +83,6 @@ ec2ssm example-web01 --profile example
 ```
 
 
-## Update instance information
-```
-ec2ssm update
-ec2ssm update --profile example
-```
-- In case of nothing profile option, default profile.
 
 ## In case of ssl errors
 - need update python3
