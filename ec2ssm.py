@@ -31,6 +31,24 @@ def get_ec2_instance_list(profile="default"):
             instance_list.append(tags['Name'])
     return instance_list
 
+# get instance with instance name for update
+def update_ec2_instance_list(profile="default"):
+    instance_list = []
+    instances = update_instances(profile)
+    for reservations in instances['Reservations']:
+        for instance in reservations['Instances']:
+            tags = parse_sets(instance['Tags'])
+            instance_list.append(tags['Name'])
+    return instance_list
+
+# update cache 
+def update_instances(profile="default"):
+    session = boto3.session.Session(profile_name=profile)
+    ec2 = session.client('ec2')
+    instances =  ec2.describe_instances()
+    pickle.dump(instances, open(os.path.dirname(os.path.abspath(__file__)) + "/" + profile + "_instances.cache", "wb"))
+    return instances
+
 # use cache 
 def get_instances(profile="default"):
     try: instances = pickle.load(open(os.path.dirname(os.path.abspath(__file__)) + "/" + profile + "_instances.cache", "rb"))
@@ -71,7 +89,7 @@ if __name__ == "__main__":
         profile = args.profile
 
     if args.arg1 == 'update':
-        instance_list = get_ec2_instance_list(profile)
+        instance_list = update_ec2_instance_list(profile)
         instances_txt = ' '.join(map(str, instance_list))
 
         path = os.environ['HOME'] + '/.aws_instances_' + profile
