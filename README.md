@@ -58,7 +58,7 @@ cd ec2ssm
 ```
 
 ### Edit zsh setting
-- add following to ~/.zshrc.local 
+- add following to ~/.zshrc 
 ```
 function ec2ssm { ~/ec2ssm/ec2ssm.py $1 $2 $3 }
 function _ec2ssm { compadd $(cat ~/.aws_instances*) }
