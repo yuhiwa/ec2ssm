@@ -11,7 +11,6 @@ from collections import defaultdict
 import pexpect
 import subprocess
 import argparse
-
 # get Name tag
 def parse_sets(tags):
     result = {}
@@ -95,7 +94,7 @@ if __name__ == "__main__":
         path = os.environ['HOME'] + '/.aws_instances_' + profile
 
         with open(path, mode='w') as f:
-            f.write(instances_txt)
+            f.write(instances_txt + ' ')
         exit()
 
     instance_name =  args.arg1
