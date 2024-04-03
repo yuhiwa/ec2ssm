@@ -34,6 +34,18 @@ rm /usr/local/bin/aws
 brew install awscli
 ```
 
+### When update python
+```
+cd $HOME
+python -m venv .ec2ssm
+source .ec2ssm/bin/activate
+pip3 install boto3 pexpect
+```
+- add following lines to .zshrc.local 
+```
+source $HOME/.ec2ssm/bin/activate
+```
+
 ## Install ssm plugin
 
 ```
