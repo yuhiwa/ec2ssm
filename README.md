@@ -37,7 +37,7 @@ brew install awscli
 ### When update python
 ```
 cd $HOME
-python -m venv .ec2ssm
+python3 -m venv .ec2ssm
 source .ec2ssm/bin/activate
 pip3 install boto3 pexpect
 ```
