@@ -22,7 +22,7 @@ EC2SSMは、AWSのEC2インスタンスにSession Manager (SSM)経由で簡単�
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/yourusername/ec2ssm.git
+git clone https://github.com/yuhiwa/ec2ssm.git
 
 # スクリプトに実行権限を付与
 chmod +x ec2ssm/ec2ssm.sh
